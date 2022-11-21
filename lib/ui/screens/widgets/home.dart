@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  // ignore: library_private_types_in_public_api
+  _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
