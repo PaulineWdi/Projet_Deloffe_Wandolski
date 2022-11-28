@@ -8,6 +8,7 @@ class APIService {
   final Dio dio = Dio();
 
   Future<Response> getData(String path, {Map<String, dynamic>? params})async{
+
     // on construit l'URL :
     String _url = api.baseURL + path;
     // on construit les paramètres de la requetes :
