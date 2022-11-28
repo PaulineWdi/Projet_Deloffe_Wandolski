@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tpmobile/services/api_services.dart';
+
+import '../../../models/film.dart';
+import '../../../models/film_api.dart';
+import '../../../models/movie.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -10,6 +15,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<Film>? _Film;
+  bool _isLoading = true;
+  @override
+  void initState() {
+    super.initState();
+    getFilm();
+
+  }
+
+  Future<void> getFilm() async {
+    _Film = (await Film_api.getFilm()).cast<Film>();
+    setState(() {
+      _isLoading = false;
+    });
+    print(_Film);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +45,9 @@ class _HomeState extends State<Home> {
           Container(
             height: 500,
             color: Colors.red,
+            child: _Film != null
+                ? Image.network('${_Film  ['Poster']}')
+                : Text('Aucune donnée'),
           ),
           const SizedBox(height: 15),
           Text(

@@ -1,3 +1,5 @@
+import '../services/api.dart';
+
 class Movie {
   String? title;
   String? year;
@@ -85,7 +87,7 @@ class Movie {
     response = json['Response'];
   }
 
-  Map<String, dynamic> toJson() {
+   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Title'] = this.title;
     data['Year'] = this.year;
@@ -116,6 +118,8 @@ class Movie {
     data['Response'] = this.response;
     return data;
   }
+
+
 }
 
 class Ratings {
@@ -134,5 +138,10 @@ class Ratings {
     data['Source'] = this.source;
     data['Value'] = this.value;
     return data;
+  }
+
+  String posterURL() {
+    API api = API();
+    return api.baseURL;
   }
 }
